@@ -54,15 +54,14 @@ function showTodos() {
   const todos = JSON.parse(localStorage.getItem('list'))
   listGroupTodo.innerHTML = ""
   todos.forEach((item, i) => {
-    listGroupTodo.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-between">
+    listGroupTodo.innerHTML +=
+      `<li ondblclick="setCompleted(${i})" class="list-group-item d-flex justify-content-between align-items-between">
   ${item.text}
   <div class="todo-icons">
-    <span class="opacity-50 me-2">${item.time}</span>
-    <img  src="img/edit.svg" alt="edit icon" width="25" height="25">
-      <img onclick="deleteTodo(${i})" src="img/delete.svg" alt="delete icon" width="25" height="25">
-
-      </div>
-    </li>` })
+  <span class="opacity-50 me-2">${item.time}</span>
+  <img  src="img/edit.svg" alt="edit icon" width="25" height="25">
+  <img onclick="deleteTodo(${i})" src="img/delete.svg" alt="delete icon" width="25" height="25">
+  </div> </li>` })
 }
 
 
@@ -103,4 +102,17 @@ function deleteTodo(id) {
   showTodos()
 }
 
-deleteTodo()
+// setCompleted
+function setCompleted(id) {
+  const completedTodos = todos.map((item, i) => {
+    if (id == i) {
+      return { ...item, compleated: item.compleated == true ? false : true }
+
+    } else {
+      return { ...item }
+    }
+  })
+  todos = completedTodos
+  setTodos()
+  showTodos()
+}
