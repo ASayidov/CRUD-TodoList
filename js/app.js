@@ -55,7 +55,8 @@ function showTodos() {
   listGroupTodo.innerHTML = ""
   todos.forEach((item, i) => {
     listGroupTodo.innerHTML +=
-      `<li ondblclick="setCompleted(${i})" class="list-group-item d-flex justify-content-between align-items-between">
+      `<li ondblclick="setCompleted(${i})" class="list-group-item d-flex justify-content-between align-items-between
+      ${item.completed == true ? 'completed' : ""}">
   ${item.text}
   <div class="todo-icons">
   <span class="opacity-50 me-2">${item.time}</span>
@@ -83,7 +84,7 @@ formCreate.addEventListener('submit', (e) => {
   const todoText = formCreate['input-create'].value.trim()
   formCreate.reset()
   if (todoText.length) {
-    todos.push({ text: todoText, time: getTime(), compleated: false })
+    todos.push({ text: todoText, time: getTime(), completed: false })
     console.log(todos);
     setTodos()
     showTodos()
@@ -106,7 +107,7 @@ function deleteTodo(id) {
 function setCompleted(id) {
   const completedTodos = todos.map((item, i) => {
     if (id == i) {
-      return { ...item, compleated: item.compleated == true ? false : true }
+      return { ...item, completed: item.completed == true ? false : true }
 
     } else {
       return { ...item }
