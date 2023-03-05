@@ -15,17 +15,27 @@ const closeEl = document.getElementById('close')
 // chek
 let todos = JSON.parse(localStorage.getItem("list")) ? JSON.parse(localStorage.getItem("list")) : [];
 
+if (todos.length) showTodos()
+
+
 //Set todos to localstorage
 function setTodos() {
   localStorage.setItem('list', JSON.stringify(todos))
-
-
 }
 
 //show todos
 function showTodos() {
   const todos = JSON.parse(localStorage.getItem('list'))
+  todos.forEach((item, i) => {
+    listGroupTodo.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-between">
+  salom dunyo
+  <div class="todo-icons">
+    <span class="opacity-50 me-2">05.03.2023</span>
+    <img src="img/edit.svg" alt="edit icon" width="25" height="25">
+      <img src="img/delete.svg" alt="delete icon" width="25" height="25">
 
+      </div>
+    </li>` })
 }
 
 
@@ -37,8 +47,9 @@ function showMessage(where, message) {
     document.getElementById(`${where}`).textContent = ''
 
   }, 2500);
-
 }
+
+/* */
 
 // Get Todos
 formCreate.addEventListener('submit', (e) => {
