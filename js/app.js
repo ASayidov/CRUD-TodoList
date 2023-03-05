@@ -26,9 +26,10 @@ function setTodos() {
 //show todos
 function showTodos() {
   const todos = JSON.parse(localStorage.getItem('list'))
+  listGroupTodo.innerHTML = ""
   todos.forEach((item, i) => {
     listGroupTodo.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-between">
-  salom dunyo
+  ${item.text}
   <div class="todo-icons">
     <span class="opacity-50 me-2">05.03.2023</span>
     <img src="img/edit.svg" alt="edit icon" width="25" height="25">
@@ -60,6 +61,7 @@ formCreate.addEventListener('submit', (e) => {
     todos.push({ text: todoText, time: '15:46, 05.03.2023', compleated: false })
     console.log(todos);
     setTodos()
+    showTodos()
   } else {
     showMessage('message-create', "Please, enter some text...")
   }
