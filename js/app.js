@@ -11,6 +11,8 @@ const hourEl = document.getElementById('hour')
 const minuteEl = document.getElementById('minute')
 const secondEl = document.getElementById('second')
 const closeEl = document.getElementById('close')
+// const todoList =document.getElementById('todolist')
+
 
 // chek
 let todos = JSON.parse(localStorage.getItem("list")) ? JSON.parse(localStorage.getItem("list")) : [];
@@ -45,7 +47,7 @@ function getTime() {
 
 
 }
-getTime()
+setInterval(getTime, 1000)
 
 //show todos
 function showTodos() {
@@ -56,8 +58,8 @@ function showTodos() {
   ${item.text}
   <div class="todo-icons">
     <span class="opacity-50 me-2">${item.time}</span>
-    <img src="img/edit.svg" alt="edit icon" width="25" height="25">
-      <img src="img/delete.svg" alt="delete icon" width="25" height="25">
+    <img  src="img/edit.svg" alt="edit icon" width="25" height="25">
+      <img onclick="deleteTodo(${i})" src="img/delete.svg" alt="delete icon" width="25" height="25">
 
       </div>
     </li>` })
@@ -90,3 +92,15 @@ formCreate.addEventListener('submit', (e) => {
     showMessage('message-create', "Please, enter some text...")
   }
 })
+
+//delete todo
+function deleteTodo(id) {
+  const deletedTodos = todos.filter((item, i) => {
+    return i !== id
+  })
+  todos = deletedTodos
+  setTodos()
+  showTodos()
+}
+
+deleteTodo()
