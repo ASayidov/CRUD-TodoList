@@ -31,12 +31,15 @@ function getTime() {
   const year = now.getFullYear()
   const hours = now.getHours() <= 9 ? '0' + now.getHours() : now.getHours()
   const minut = now.getMinutes() <= 9 ? '0' + now.getMinutes() : now.getMinutes()
-
-  const monthName = (now.getMonth() + 1) <= 9 ? '0' + now.getMonth() : now.getMonth()
-  fullDay.textContent = `${date}.${month}.${year}`
+  const sekund = now.getSeconds() <= 9 ? '0' + now.getSeconds() : now.getSeconds()
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const monthName = now.getMonth()
+  fullDay.textContent = `${date}.${monthNames[monthName]}.${year}`
   hourEl.textContent = hours
   minuteEl.textContent = minut
-  secondEl.textContent.=
+  secondEl.textContent = sekund
 
   return `${date}.${month}.${year} ${hours}:${minut}`
 
