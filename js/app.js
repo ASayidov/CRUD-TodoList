@@ -23,6 +23,21 @@ function setTodos() {
   localStorage.setItem('list', JSON.stringify(todos))
 }
 
+//time
+function getTime() {
+  const now = new Date()
+  const date = now.getDate()
+  const month = now.getMonth()
+  const year = now.getFullYear()
+  const hours = now.getHours()
+  const minut = now.getMinutes()
+
+  return `${date <= 9 ? '0' + date : date}.${month <= 9 ? '0' + month : month}.${year} ${hours <= 9 ? '0' + hours : hours}:${minut <= 9 ? '0' + minut : minut}`
+
+
+}
+
+
 //show todos
 function showTodos() {
   const todos = JSON.parse(localStorage.getItem('list'))
@@ -31,7 +46,7 @@ function showTodos() {
     listGroupTodo.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-between">
   ${item.text}
   <div class="todo-icons">
-    <span class="opacity-50 me-2">05.03.2023</span>
+    <span class="opacity-50 me-2">${getTime()}</span>
     <img src="img/edit.svg" alt="edit icon" width="25" height="25">
       <img src="img/delete.svg" alt="delete icon" width="25" height="25">
 
