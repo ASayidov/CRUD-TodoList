@@ -26,17 +26,23 @@ function setTodos() {
 //time
 function getTime() {
   const now = new Date()
-  const date = now.getDate()
-  const month = now.getMonth() + 1
+  const date = now.getDate() <= 9 ? '0' + now.getDate() : now.getDate()
+  const month = (now.getMonth() + 1) <= 9 ? '0' + now.getMonth() : now.getMonth()
   const year = now.getFullYear()
-  const hours = now.getHours()
-  const minut = now.getMinutes()
+  const hours = now.getHours() <= 9 ? '0' + now.getHours() : now.getHours()
+  const minut = now.getMinutes() <= 9 ? '0' + now.getMinutes() : now.getMinutes()
 
-  return `${date <= 9 ? '0' + date : date}.${month <= 9 ? '0' + month : month}.${year} ${hours <= 9 ? '0' + hours : hours}:${minut <= 9 ? '0' + minut : minut}`
+  const monthName = (now.getMonth() + 1) <= 9 ? '0' + now.getMonth() : now.getMonth()
+  fullDay.textContent = `${date}.${month}.${year}`
+  hourEl.textContent = hours
+  minuteEl.textContent = minut
+  secondEl.textContent.=
+
+  return `${date}.${month}.${year} ${hours}:${minut}`
 
 
 }
-
+getTime()
 
 //show todos
 function showTodos() {
@@ -46,7 +52,7 @@ function showTodos() {
     listGroupTodo.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-between">
   ${item.text}
   <div class="todo-icons">
-    <span class="opacity-50 me-2">${getTime()}</span>
+    <span class="opacity-50 me-2">${item.time}</span>
     <img src="img/edit.svg" alt="edit icon" width="25" height="25">
       <img src="img/delete.svg" alt="delete icon" width="25" height="25">
 
@@ -73,7 +79,7 @@ formCreate.addEventListener('submit', (e) => {
   const todoText = formCreate['input-create'].value.trim()
   formCreate.reset()
   if (todoText.length) {
-    todos.push({ text: todoText, time: '15:46, 05.03.2023', compleated: false })
+    todos.push({ text: todoText, time: getTime(), compleated: false })
     console.log(todos);
     setTodos()
     showTodos()
