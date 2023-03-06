@@ -159,7 +159,6 @@ document.addEventListener("keydown", (e) => {
   if (e.keyCode == 27 || e.keyCode == 40) {
     close();
   }
-  console.log(e);
 });
 
 function open() {
