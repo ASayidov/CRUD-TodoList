@@ -31,7 +31,7 @@ function setTodos() {
 function getTime() {
   const now = new Date();
   const date = now.getDate() <= 9 ? "0" + now.getDate() : now.getDate();
-  const month = now.getMonth() + 1 <= 9 ? "0" + now.getMonth() : now.getMonth();
+  const month = (now.getMonth() + 1) <= 9 ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1)
   const year = now.getFullYear();
   const hours = now.getHours() <= 9 ? "0" + now.getHours() : now.getHours();
   const minut =
